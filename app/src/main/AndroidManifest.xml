@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.t.aidl3">
+    package="com.t.serveraidl">
 
     <application
         android:allowBackup="true"
@@ -17,13 +17,23 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Myservice">
-
+        <!--             android:exported="true" 这个一定要加上 -->
+        <service
+            android:name=".Myservice"
+            android:exported="true">
+            <!-- 低于6.0的版本能够用隐式调用，高于6.0的版本只能通过显示调用。 -->
             <intent-filter>
-                <action android:name="com.xxx.yy"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.xxx.yy" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
+
+
     </application>
+
+    <!-- 包的可见性，待验证 -->
+<!--    <queries>-->
+<!--        <package android:name="com.t.aidl3.Myservice" />-->
+<!--    </queries>-->
 
 </manifest>
